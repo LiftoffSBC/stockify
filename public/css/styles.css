@@ -1,0 +1,33 @@
+.list-group-item {
+  line-height: 2.5;
+}
+
+.jumbotron {
+  margin-top: 20px;
+  background-image: url("../images/world-stock-exchange.jpg");
+  background-size: cover;
+  font-family: 'Stardos Stencil', cursive;
+  text-shadow:red;text-shadow: 2px 2px black;
+  text-align: center;
+  background-blend-mode: hard-light;
+}
+.jumbotron h1 {
+  font-size: 100px;
+  color: rgb(255, 0, 0);
+}
+.jumbotron p {
+  font-size: 30px;
+  color: red;
+}
+
+body {
+  background-image: url("../images/nystock.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: initial;
+}
+
+footer{
+  text-align: center;
+}
+
