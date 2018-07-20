@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "root",
-    "database": "stockdb",
-    "host": "localhost",
+    "username": "djhehl6pk55pq5vf",
+    "password": "mrhtf0sikrvugpfn",
+    "database": "uk7v5q6yl6m6cx41",
+    "host": "wiad5ra41q8129zn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {
