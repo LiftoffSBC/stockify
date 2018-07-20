@@ -11,7 +11,8 @@ CREATE TABLE stocks
     symbol varchar(255) NOT NULL,
     companyName VARCHAR(255),
     latestPrice INTEGER,
-    related VARCHAR(255),
+    high INTEGER,
+    low INTEGER,
     PRIMARY KEY (id)
 );
 
