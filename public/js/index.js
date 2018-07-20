@@ -1,30 +1,23 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
-
-// The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  saveExample: function(stockinfo) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
+      url: "api/stocks",
+      data: JSON.stringify(stockinfo)
     });
   },
   getExamples: function() {
     return $.ajax({
-      url: "api/examples",
+      url: "api/stocks",
       type: "GET"
     });
   },
   deleteExample: function(id) {
     return $.ajax({
-      url: "api/examples/" + id,
+      url: "api/stocks/" + id,
       type: "DELETE"
     });
   }
@@ -32,68 +25,71 @@ var API = {
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+  API.getExamples().then(function() {
+    var createRow = function(stockinfo) {
+      // Get reference to existing tbody element, create a new table row element
+      var symbol = $("<td>").text(stockinfo.symbol);
+      var companyName = $("<td>").text(stockinfo.companyName);
+      var high = $("<td>").text(stockinfo.high);
+      var low = $("<td>").text(stockinfo.low);
+      var latestPrice = $("<td>").text(stockinfo.latestPrice);
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
-
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
-
-      $li.append($button);
-
-      return $li;
-    });
-
-    $exampleList.empty();
-    $exampleList.append($examples);
+      if ($("#dropdown" === "#option1")) {
+        var tBody = $("#column1");
+        var tRow = $("<tr>");
+        tRow.append(symbol, companyName, high, low, latestPrice);
+        tBody.append(tRow);
+      } else if ($("#dropdown" === "#option2")) {
+        var tBody = $("#column2");
+        var tRow = $("<tr>");
+        tRow.append(symbol, companyName, high, low, latestPrice);
+        tBody.append(tRow);
+      }
+    };
+    createRow();
   });
 };
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
-  };
+  var userSymbol = $("#userSymbol")
+    .val()
+    .trim();
+  console.log(userSymbol);
+  var queryURL =
+    "https://ws-api.iextrading.com/1.0/stock/" + userSymbol + "/quote";
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+    console.log(response);
+    var stockinfo = {
+      symbol: response.symbol,
+      companyName: response.companyName,
+      high: response.high,
+      low: response.low,
+      latestPrice: response.latestPrice
+    };
+    console.log(stockinfo);
 
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
-  }
-
-  API.saveExample(example).then(function() {
-    refreshExamples();
+    API.saveExample(stockinfo).then(function() {
+      refreshExamples();
+    });
   });
-
-  $exampleText.val("");
-  $exampleDescription.val("");
 };
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
+if (!userSymbol.text) {
+  alert("You must enter stock symbol!");
+  return;
+}
 var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
-
-  API.deleteExample(idToDelete).then(function() {
+  var idDelete = $(this).data.id;
+  API.deleteExample(idDelete).then(function() {
     refreshExamples();
+    console.log("stock Deleted", idDelete);
   });
 };
-
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+// handleDeleteBtnClick is called when an example's delete button is
+$("#button").on("click", handleFormSubmit);
+$("#deleteButton").on("click", handleDeleteBtnClick);

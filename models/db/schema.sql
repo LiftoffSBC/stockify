@@ -1,3 +1,4 @@
+
 -- Schema
 DROP DATABASE IF EXISTS stock_db;
 CREATE DATABASE stock_db;
@@ -10,14 +11,9 @@ CREATE TABLE stocks
     id int NOT NULL AUTO_INCREMENT,
     symbol varchar(255) NOT NULL,
     companyName VARCHAR(255),
-    latestPrice INTEGER,
-    related VARCHAR(255),
+    high INTEGER(10),
+    low INTEGER(10),
+    latestPrice INTEGER(10),
     PRIMARY KEY (id)
 );
 
--- --------//This is how the info comes in from IEX API//----------
--- symbol string
--- companyName string
--- latestPrice  number
--- related string
--- --------//------------------------------------------//----------
