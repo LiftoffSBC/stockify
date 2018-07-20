@@ -1,0 +1,88 @@
+
+
+body {
+    background-image: url("../images/image2.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* text-align: center; */
+    font-family: 'Stardos Stencil', cursive;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.666);
+    margin: 100px;
+}
+
+#heading {
+    background: linear-gradient(#3816f5, #2eaff5);
+    text-align: center;
+}
+
+#marquee {
+    font-family: 'Stardos Stencil', cursive;
+    color: rgb(243, 247, 6);
+    font-size: 24px;
+}
+
+#column1 {
+    text-align: center;
+    background: rgba(112, 128, 144, 0.9);
+    font-family: 'Stardos Stencil', cursive;
+    color: rgb(31, 29, 29);
+    font-size: 36px;
+    margin: 24px;
+}
+
+#column2 {
+    text-align: center;
+    background: rgba(112, 128, 144, 0.9);
+    font-family: 'Stardos Stencil', cursive;
+    color: rgb(31, 29, 29);
+    font-size: 36px;
+    margin: 24px;
+}
+
+#directory {
+    text-align: center;
+}
+
+#home {
+    color: red;
+    text-shadow: 2px 2px black;
+    font-size: 28px;
+}
+
+.stocksearch {
+    text-align: center;
+}
+
+#dropdown {
+    text-align: center;
+    font-family: 'Stardos Stencil', cursive;
+
+}
+
+#stock {
+    text-align: center;
+    font-family: 'Stardos Stencil', cursive;
+}
+
+#footer {
+    text-align: center;
+    color: red;
+    text-shadow: 2px 2px black;
+    font-size: 28px;
+}
+
+#title {
+    font-family: 'Stardos Stencil', cursive;
+    color: rgb(163, 194, 145);
+    font-size: 60px;
+    font-weight: bolder;
+}
+
+#subtitle {
+    font-family: 'Stardos Stencil', cursive;
+    font-size: 24px;
+    color: rgb(163, 194, 145);
+}
