@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stockpage!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Stardos+Stencil" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../public/css/StockStyles.css">
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <section class="hero is-small is-info is-bold">
+        <div class="hero-body" id="heading">
+            <div class="container">
+                <h1 id="title">
+                    Stockify
+                </h1>
+                <h2 id="subtitle">
+                    A simple app for managing stocks
+                </h2>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <section class="stocksearch">
+        <div class="col-md-3">
+        </div>
+        <!-- A place for the user to enter in the ticker symbol (name of stock) they'd like to look up -->
+        <div class="col-md-6">
+            <input class="input is-rounded is-center is-focused is-danger" type="text" placeholder="Enter Ticker Symbol Here">
+            <br>
+            <br>
+            <!-- A place for the user to select whether they'd like to look up a stock the currently own or a stock they're interested in -->
+            <div class="select is-rounded is-medium is-danger" id="dropdown">
+                <select>
+                    <option hidden="">Select </option>
+                    <option>Interested</option>
+                </select>
+            </div>
+            <br>
+            <br>
+            <!-- A place for the user to submit and look up the information about the stock they entered -->
+            <a id="stock" class="button is-link is-focused">Show the Stock</a>
+        </div>
+        <div class "col-md-3">
+        </div>
+    </section>
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+    <!-- A place for the user to see the stocks that they own -->
+    <div class="container">
+        <div class="columns is-2">
+            <div id="column1" class="column">
+                Stocks you Own
+                <hr>
+            </div>
+            <!-- A place for the user to see the stocks information for the stocks they're interested in possibly buying -->
+            <div id="column2" class="column">
+                Stocks of Interest
+                <hr>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <footer>
+        <div id="directory" class="container">
+            <p>
+                <!-- A link for the user to be able to click to go back to the homepage -->
+                <a id="home" href="index.html">Home</a> | |
+                <!-- A link for the user to go and view the github repo -->
+                <a id="footer" href="https://github.com/LiftoffSBC/project2" target="_blank">GitHub Repo</a>
+            </p>
+        </div>
+    </footer>
+    <br>
+    <br>
+    <br>
+</body>
+
+</html>
