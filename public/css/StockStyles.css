@@ -18,6 +18,12 @@ footer {
     text-align: center;
 }
 
+#marquee {
+    font-family: 'Stardos Stencil', cursive;
+    color: rgb(243, 247, 6);
+    font-size: 24px;
+}
+
 #column1 {
     text-align: center;
     background: rgba(112, 128, 144, 0.9);
