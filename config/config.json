@@ -1,10 +1,13 @@
 {
   "development": {
-    "username": "djhehl6pk55pq5vf",
-    "password": "mrhtf0sikrvugpfn",
-    "database": "uk7v5q6yl6m6cx41",
-    "host": "wiad5ra41q8129zn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    "dialect": "mysql"
+    "username": "root",
+    "password": "root",
+    "database": "stock_db",
+    "host": "localhost",
+    "dialect": "mysql",
+    "dialectOptions": {
+     "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock"
+    }
   },
   "test": {
     "username": "root",

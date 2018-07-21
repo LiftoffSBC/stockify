@@ -19,11 +19,11 @@
         "dot-notation": "error",
         "eqeqeq": "error",
         "no-empty-function": "error",
-        "no-multi-spaces": "error",
-        "no-unused-vars": "error",
+        "no-multi-spaces": "warn",
+        "no-unused-vars": "warn",
         "camelcase": "error",
         "indent": [
-            "error",
+            "warn",
             2
         ],
         "linebreak-style": [
