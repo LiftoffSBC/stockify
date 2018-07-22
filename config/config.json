@@ -3,12 +3,13 @@
     "username": "root",
     "password": "root",
     "database": "stock_db",
-    "host": "localhost",
-    "dialect": "mysql",
+     "host": "localhost",
+     "dialect": "mysql",
     "dialectOptions": {
-     "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock"
+      "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock"
     }
   },
+
   "test": {
     "username": "root",
     "password": null,
@@ -21,4 +22,4 @@
     "use_env_variable": "JAWSDB_URL",
     "dialect": "mysql"
   }
-}
+  }
