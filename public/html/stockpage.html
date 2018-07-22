@@ -5,10 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Stockpage!</title>
+    <link rel="stylesheet" type="text/css" href="css/StockStyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script>jQuery.ajaxPrefilter(function(options) {
+        if (options.crossDomain && jQuery.support.cors) {
+            options.url = 'https://uncc-cors-proxy.herokuapp.com/' + options.url;
+        }
+    });</script>
     <link href="https://fonts.googleapis.com/css?family=Stardos+Stencil" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../public/css/StockStyles.css">
 
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
@@ -43,11 +49,11 @@
             <br>
             <br>
             <!-- A place for the user to select whether they'd like to look up a stock the currently own or a stock they're interested in -->
-            <div class="select is-rounded is-medium is-danger" id="dropdown">
-                <select>
-                    <option hidden="">Select </option>
-                    <option id="option1">Interested</option>
-                    <option id="option2">Owned Stocks</option>
+            <div class="select is-rounded is-medium is-danger">
+                <select id="dropdown">
+                    <option hidden="" selected="selected">Select</option> 
+                    <option value ="2">Interested</option>
+                    <option value ="1">Owned Stocks</option>
                 </select>
             </div>
             <br>
@@ -100,6 +106,7 @@
     <br>
     <br>
     <br>
+    <script src="/js/pleaseRun.js"></script>
 </body>
 
 </html>
