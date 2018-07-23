@@ -31,11 +31,6 @@ var API = {
   // refreshExamples gets new examples from the db and repopulates the list
   refreshExamples = function() {
     API.getExamples().then(function() {
-      if (!userSymbol.text) {
-        alert("You must enter stock symbol!");
-      }
-
-
     });
   }
 var handleFormSubmit = function (event) {
@@ -44,6 +39,9 @@ var handleFormSubmit = function (event) {
   var userSymbol = $("#userSymbol")
     .val()
     .trim();
+    if (userSymbol ==="") {
+      alert("You must enter stock symbol");
+    }
   console.log(userSymbol);
   var queryURL =
     "https://ws-api.iextrading.com/1.0/stock/" + userSymbol + "/quote";
@@ -65,45 +63,58 @@ var handleFormSubmit = function (event) {
     console.log(stockinfo);
 
     var createRow = function () {
-      // Get reference to existing tbody element, create a new table row element
-      var symbol = $("<tr>").text(stockinfo.symbol);
-      var companyName = $("<tr>").text(stockinfo.companyName);
-      var high = $("<tr>").text(stockinfo.high);
-      var low = $("<tr>").text(stockinfo.low);
-      var latestPrice = $("<tr>").text(stockinfo.latestPrice);
-      var tRow = $("<tr>");
-      if ($("#dropdown").val() == 1) {
-        console.log("hello");
-        // option for the owned stocks
-        tRow.append(symbol, companyName, high, low, latestPrice);
-        $("#column1").append(tRow);
-      } else {
-        ($("#dropdown").val() == 2)
-        console.log("goodbye")
-        // option for the interested stocks
-        tRow.append(symbol, companyName, high, low, latestPrice);
-        $("#column2").append(tRow);
-      }
+      // post the data to the DB
+
+      $.post("/api/stocks", stockinfo, function(data){
+        console.log(data);
+        // Get reference to existing tbody element, create a new table row element
+        var symbol = $("<tr>").text(stockinfo.symbol);
+        var companyName = $("<tr>").text(stockinfo.companyName);
+        var high = $("<tr>").text(stockinfo.high);
+        var low = $("<tr>").text(stockinfo.low);
+        var latestPrice = $("<tr>").text(stockinfo.latestPrice);
+        var tBtn = $("<button>");
+        tBtn.attr("data-id", data.id);
+        tBtn.attr("action", "handleDeleteBtnClick");
+        tBtn.attr("class", "del");
+        var tRow = $("<tr>");
+        if ($("#dropdown").val() == 1) {
+          console.log("hello");
+          // option for the owned stocks
+          tRow.append(symbol, companyName, high, low, latestPrice, tBtn);
+          $("#column1").append(tRow);
+        } else {
+          ($("#dropdown").val() == 2)
+          console.log("goodbye")
+          // option for the interested stocks
+          tRow.append(symbol, companyName, high, low, latestPrice, tBtn);
+          $("#column2").append(tRow);
+        }
+      });
     }
-    API.saveExample(stockinfo).then(function () {
-      createRow();
+    API.saveExample(stockinfo).then(function(data) {
+      createRow(data);
       refreshExamples();
     })
   })
 }
 
-
-
-
-var handleDeleteBtnClick = function () {
-  var Delete = $(this).data.id;
-  API.deleteExample(Delete).then(function () {
+var handleDeleteBtnClick = function() {
+  var Delete = $(this).data().id;
+  $.ajax({
+    url: "/api/stocks/" + Delete,
+    method: "DELETE"
+  }).then(function(data) {
+    console.log(data);
     refreshExamples();
     console.log("stocks Deleted");
-    console.log(id);
+    console.log($(this).data().id);
+    var data = document.getElementById("data-id");
+data.stockinfo.removeChild(data);
+   
   });
 };
 // handleDeleteBtnClick is called when an example's delete button is
 $("#button").on("click", handleFormSubmit);
 
-$("#deleteButton").on("click", handleDeleteBtnClick);
+$(document).on("click", ".del", handleDeleteBtnClick);

@@ -16,7 +16,7 @@ module.exports = function(app) {
   });
 
   // Delete an example by id
-  app.post("/api/stocks/delete/:id", function(req, res) {
+  app.delete("/api/stocks/:id", function(req, res) {
     db.stock
       .destroy({
         where: { id: req.params.id }
