@@ -31,27 +31,11 @@ var API = {
   // refreshExamples gets new examples from the db and repopulates the list
   refreshExamples = function () {
     API.getExamples().then(function () {
-      // var createRow = function () {
-      //   // Get reference to existing tbody element, create a new table row element
-      //   var symbol = $("<td>").text(response.stockinfo);
-      //   var companyName = $("<td>").text(stockinfo.companyName);
-      //   var high = $("<td>").text(stockinfo.high);
-      //   var low = $("<td>").text(stockinfo.low);
-      //   var latestPrice = $("<td>").text(stockinfo.latestPrice);
+      if (!userSymbol.text) {
+        alert("You must enter stock symbol!");
+      }
 
-      //   if ($("#dropdown" === "#option1")) {
-      //     var tBody = $("#column1");
-      //     var tRow = $("<tr>");
-      //     tRow.append(symbol, companyName, high, low, latestPrice);
-      //     tBody.append(tRow);
-      //   } else if ($("#dropdown" === "#option2")) {
-      //     var tBody = $("#column2");
-      //     var tRow = $("<tr>");
-      //     tRow.append(symbol, companyName, high, low, latestPrice);
-      //     tBody.append(tRow);
-      //   }
-      // }
-      // createRow();
+
     });
   }
 var handleFormSubmit = function (event) {
@@ -93,33 +77,33 @@ var handleFormSubmit = function (event) {
         // option for the owned stocks
         tRow.append(symbol, companyName, high, low, latestPrice);
         $("#column1").append(tRow);
-      } else{ ($("#dropdown").val() == 2) 
-      console.log("goodbye")
+      } else {
+        ($("#dropdown").val() == 2)
+        console.log("goodbye")
         // option for the interested stocks
         tRow.append(symbol, companyName, high, low, latestPrice);
         $("#column2").append(tRow);
       }
-      }
-    API.saveExample(stockinfo).then(function() {
+    }
+    API.saveExample(stockinfo).then(function () {
       createRow();
       refreshExamples();
     })
   })
 }
-  
+
 
 
 
 var handleDeleteBtnClick = function () {
-  var Delete = $(this).data.stockinfo;
+  var Delete = $(this).data.id;
   API.deleteExample(Delete).then(function () {
     refreshExamples();
-    console.log("stocks Deleted", Delete);
+    console.log("stocks Deleted");
+    console.log(Delete);
   });
 };
 // handleDeleteBtnClick is called when an example's delete button is
 $("#button").on("click", handleFormSubmit);
-if (!userSymbol.text) {
-  alert("You must enter stock symbol!");
-}
+
 $("#deleteButton").on("click", handleDeleteBtnClick);
