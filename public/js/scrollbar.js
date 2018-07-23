@@ -11,7 +11,7 @@ $(document).ready(function () {
 
         var banner = "";
         for (i = 0; i < response.length; i++) {
-            banner += response[i].symbol + ":" + response[i].latestPrice + " | "
+            banner += response[i].symbol + ":" + response[i].latestPrice + "  |||  "
         }
         $("#marquee").text(banner)
         console.log(response)
