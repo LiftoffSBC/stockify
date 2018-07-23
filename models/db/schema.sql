@@ -2,7 +2,7 @@
 DROP DATABASE IF EXISTS stock_db;
 CREATE DATABASE stock_db;
 
--- USE stock_db;
+
 
 -- Our stock table to hold data from IEX API as added from user input
 -- CREATE TABLE stocks
@@ -15,6 +15,7 @@ CREATE DATABASE stock_db;
 --     low INTEGER,
 --     PRIMARY KEY (id)
 -- );
+
 
 -- --------//This is how the info comes in from IEX API//----------
 -- symbol string
