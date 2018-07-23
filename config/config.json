@@ -4,8 +4,10 @@
     "password": "root",
     "database": "stock_db",
      "host": "localhost",
-     "dialect": "mysql",
-     "port":3306
+    "dialect": "mysql",
+    "dialectOptions": {
+-      "socketPath": "/Applications/MAMP/tmp/mysql/mysql.sock"	
+-    }
   },
 
   "test": {
