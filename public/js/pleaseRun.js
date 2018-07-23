@@ -29,9 +29,8 @@ var API = {
   },
 
   // refreshExamples gets new examples from the db and repopulates the list
-  refreshExamples = function() {
-    API.getExamples().then(function() {
-    });
+  refreshExamples = function () {
+    API.getExamples().then(function () {});
   }
 var handleFormSubmit = function (event) {
   event.preventDefault();
@@ -39,9 +38,9 @@ var handleFormSubmit = function (event) {
   var userSymbol = $("#userSymbol")
     .val()
     .trim();
-    if (userSymbol ==="") {
-      alert("You must enter stock symbol");
-    }
+  if (userSymbol === "") {
+    alert("You must enter stock symbol");
+  }
   console.log(userSymbol);
   var queryURL =
     "https://ws-api.iextrading.com/1.0/stock/" + userSymbol + "/quote";
@@ -65,7 +64,7 @@ var handleFormSubmit = function (event) {
     var createRow = function () {
       // post the data to the DB
 
-      $.post("/api/stocks", stockinfo, function(data){
+      $.post("/api/stocks", stockinfo, function (data) {
         console.log(data);
         // Get reference to existing tbody element, create a new table row element
         var symbol = $("<tr>").text(stockinfo.symbol);
@@ -76,8 +75,10 @@ var handleFormSubmit = function (event) {
         var tBtn = $("<button>");
         tBtn.attr("data-id", data.id);
         tBtn.attr("action", "handleDeleteBtnClick");
-        tBtn.attr("class", "del");
+        tBtn.attr("class", "del button is-danger");
+        tBtn.html("Delete");
         var tRow = $("<tr>");
+        tRow.attr("id", "row" + data.id);
         if ($("#dropdown").val() == 1) {
           console.log("hello");
           // option for the owned stocks
@@ -92,26 +93,25 @@ var handleFormSubmit = function (event) {
         }
       });
     }
-    API.saveExample(stockinfo).then(function(data) {
+    API.saveExample(stockinfo).then(function (data) {
       createRow(data);
       refreshExamples();
     })
   })
 }
 
-var handleDeleteBtnClick = function() {
+var handleDeleteBtnClick = function () {
   var Delete = $(this).data().id;
   $.ajax({
     url: "/api/stocks/" + Delete,
     method: "DELETE"
-  }).then(function(data) {
+  }).then(function (data) {
     console.log(data);
     refreshExamples();
     console.log("stocks Deleted");
     console.log($(this).data().id);
-    var data = document.getElementById("data-id");
-data.stockinfo.removeChild(data);
-   
+    $("#row" + Delete).remove();
+
   });
 };
 // handleDeleteBtnClick is called when an example's delete button is
