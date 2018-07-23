@@ -16,10 +16,10 @@ module.exports = function(app) {
   });
 
   // Delete an example by id
-  app.delete("/api/stocks/:stockinfo", function(req, res) {
+  app.post("/api/stocks/delete/:id", function(req, res) {
     db.stock
       .destroy({
-        where: { stockinfo: req.params.stockinfo }
+        where: { stockinfo: req.params.id }
       })
       .then(function(dbstock) {
         res.json(dbstock);
