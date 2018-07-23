@@ -29,8 +29,8 @@ var API = {
   },
 
   // refreshExamples gets new examples from the db and repopulates the list
-  refreshExamples = function () {
-    API.getExamples().then(function () {
+  refreshExamples = function() {
+    API.getExamples().then(function() {
       if (!userSymbol.text) {
         alert("You must enter stock symbol!");
       }
@@ -100,7 +100,7 @@ var handleDeleteBtnClick = function () {
   API.deleteExample(Delete).then(function () {
     refreshExamples();
     console.log("stocks Deleted");
-    console.log(Delete);
+    console.log(id);
   });
 };
 // handleDeleteBtnClick is called when an example's delete button is

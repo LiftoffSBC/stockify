@@ -19,7 +19,7 @@ module.exports = function(app) {
   app.post("/api/stocks/delete/:id", function(req, res) {
     db.stock
       .destroy({
-        where: { stockinfo: req.params.id }
+        where: { id: req.params.id }
       })
       .then(function(dbstock) {
         res.json(dbstock);
